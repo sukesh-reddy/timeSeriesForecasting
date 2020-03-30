@@ -57,5 +57,27 @@ ggsubseriesplot(d.sales)
 
 ################
 # Use a benchmark method to forecast
-# let's use easonal naive method  as our benchamrk
+# let's use seasonal naive method  as our benchamrk
+# y_t = y_{t-s} + e_t
 ################
+fit <- snaive(d.sales) # Residuals SD=4342.8227
+print(summary(fit))
+checkresiduals(fit)
+
+
+########################
+# Fit ETS method
+######################
+fit_ets <- ets(sales)
+print(summary(fit_ets)) # Residuals SD =0.0099
+checkresiduals(fit_ets)
+
+
+############################
+# Fit an ARIMA model
+###########################
+fit_arima <- auto.arima(sales,d=1,D=1,stepwise = F,approximation = F,trace = T)
+print(summary(fit_arima)) # Residuals SD = 3528.932
+checkresiduals(fit_arima)
+
+

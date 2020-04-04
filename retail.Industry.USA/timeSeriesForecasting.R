@@ -80,4 +80,9 @@ fit_arima <- auto.arima(sales,d=1,D=1,stepwise = F,approximation = F,trace = T)
 print(summary(fit_arima)) # Residuals SD = 3528.932
 checkresiduals(fit_arima)
 
-
+#######################
+# forecast with ARIMA model
+#########################
+fcst <- forecast(fit_arima,h=24)
+autoplot(fcst,include = 60)
+print(summary(fcst))
